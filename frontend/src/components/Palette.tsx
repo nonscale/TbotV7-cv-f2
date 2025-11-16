@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ExpressionItem } from '../types';
 import { useStrategyStore } from '../store/strategyStore';
-import IndicatorModal from './IndicatorModal';
+// import IndicatorModal from './IndicatorModal'; // 주석 처리
 import './Palette.css';
 
 interface PaletteProps {
@@ -69,7 +69,7 @@ const Palette: React.FC<PaletteProps> = ({ onItemAdd }) => {
     { id: '100', type: 'number', label: '100' },
     { id: '0', type: 'number', label: '0' },
   ]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  // const [isModalOpen, setIsModalOpen] = useState(false); // 주석 처리
 
   const { variables, addVariable, activeCanvas } = useStrategyStore((state) => ({
     variables: state.variables,
@@ -89,9 +89,9 @@ const Palette: React.FC<PaletteProps> = ({ onItemAdd }) => {
     setNumberInput('');
   };
 
-  const handleSaveVariable = (variable: ExpressionItem) => {
-    addVariable(variable);
-  };
+  // const handleSaveVariable = (variable: ExpressionItem) => { // 주석 처리
+  //   addVariable(variable);
+  // };
 
   const renderSection = (title: string, items: React.ReactNode) => (
     <div className="palette-section">
@@ -102,17 +102,17 @@ const Palette: React.FC<PaletteProps> = ({ onItemAdd }) => {
 
   return (
     <>
-      <IndicatorModal
+      {/* <IndicatorModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         onSave={handleSaveVariable}
-      />
+      /> */}
       <div className="palette">
         <h3>팔레트 (도구 모음)</h3>
 
         {renderSection('지표', (
           <button
-            onClick={() => setIsModalOpen(true)}
+            // onClick={() => setIsModalOpen(true)} // 주석 처리
             className="palette-item item-type-indicator"
             disabled={isFirstScan}
             title={isFirstScan ? "1차 스캔에서는 지표를 사용할 수 없습니다." : "지표 설정"}
