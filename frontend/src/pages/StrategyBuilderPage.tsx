@@ -152,7 +152,7 @@ const StrategyBuilderPage: React.FC = () => {
         </button>
       </div>
 
-      {/* <Palette onItemAdd={handleItemAdd} /> */}
+      <Palette onItemAdd={handleItemAdd} />
       <div className="canvas-selector">
         <button onClick={() => setActiveCanvas('first')} className={activeCanvas === 'first' ? 'active' : ''}>
           1차 스캔
