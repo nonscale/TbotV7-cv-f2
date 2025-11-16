@@ -161,7 +161,7 @@ const StrategyBuilderPage: React.FC = () => {
           2차 스캔
         </button>
       </div>
-      <div className="canvases-container">
+      {/* <div className="canvases-container">
         <div className="canvas-wrapper">
           <h3>1차 스캔 캔버스</h3>
           <Canvas items={firstScanItems} setItems={setFirstScanItems} />
@@ -170,13 +170,13 @@ const StrategyBuilderPage: React.FC = () => {
           <h3>2차 스캔 캔버스</h3>
           <Canvas items={secondScanItems} setItems={setSecondScanItems} />
         </div>
-      </div>
+      </div> */}
       <div className="scan-controls">
         <button onClick={handleRunScan} disabled={isScanning || (firstScanItems.length === 0 && secondScanItems.length === 0)}>
           {isScanning ? 'Scanning...' : 'Run Scan'}
         </button>
       </div>
-      <ScanResultsTable results={scanResults} isLoading={isScanning} />
+      {/* <ScanResultsTable results={scanResults} isLoading={isScanning} /> */}
     </div>
   );
 };
