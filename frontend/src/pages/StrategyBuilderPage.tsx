@@ -9,13 +9,11 @@ import './StrategyBuilderPage.css';
 
 const API_BASE_URL = 'http://localhost:8000';
 
-// ExpressionItem 배열을 백엔드가 이해할 수 있는 JSON 페이로드로 변환하는 함수
+// ... (buildExpressionPayload 함수는 이전과 동일)
 const buildExpressionPayload = (items: ExpressionItem[]): any => {
     if (items.length === 0) {
         return null;
     }
-    // TODO: 연산자 우선순위와 괄호를 처리하는 더 정교한 파서 구현 필요
-    // 현재는 왼쪽에서 오른쪽으로 간단히 파싱
     let expression: any = items[0];
     let i = 1;
     while (i < items.length) {
@@ -29,8 +27,6 @@ const buildExpressionPayload = (items: ExpressionItem[]): any => {
             };
             i += 2;
         } else {
-            // 연산자가 없으면 단순 배열로 처리 (예: 함수 호출)
-            // 이 부분은 백엔드 스펙에 따라 더 정교하게 만들어야 함
             expression = [expression, items[i]];
             i += 1;
         }
@@ -61,6 +57,7 @@ const StrategyBuilderPage: React.FC = () => {
     return localData ? JSON.parse(localData) : {};
   });
 
+  // ... (핸들러 함수들은 이전과 동일)
   const handleItemAdd = useCallback((item: ExpressionItem) => {
     if (activeCanvas === 'first') {
       addFirstScanItem(item);
