@@ -1,0 +1,26 @@
+.preview-container {
+  margin: 20px 0;
+  padding: 15px;
+  background-color: #2a2a2e;
+  border: 1px solid #3a3a3f;
+  border-radius: 8px;
+}
+
+.preview-container h4 {
+  margin-top: 0;
+  color: #e2e2e2;
+  border-bottom: 1px solid #444;
+  padding-bottom: 10px;
+}
+
+.preview-box {
+  background-color: #1e1e1e;
+  padding: 10px;
+  border-radius: 4px;
+  font-family: 'Courier New', Courier, monospace;
+  color: #d4d4d4;
+}
+
+.preview-box p {
+  margin: 5px 0;
+}
