@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ExpressionItem } from '../types';
-// import { useStrategyStore } from '../store/strategyStore'; // 주석 처리
-// import IndicatorModal from './IndicatorModal';
+import { useStrategyStore } from '../store/strategyStore';
+import IndicatorModal from './IndicatorModal'; // 주석 해제
 import './Palette.css';
 
 interface PaletteProps {
@@ -69,17 +69,11 @@ const Palette: React.FC<PaletteProps> = ({ onItemAdd }) => {
     { id: '100', type: 'number', label: '100' },
     { id: '0', type: 'number', label: '0' },
   ]);
+  const [isModalOpen, setIsModalOpen] = useState(false); // 주석 해제
 
-  // --- ZUSTAND 연동 코드 비활성화 ---
-  // const { variables, addVariable, activeCanvas } = useStrategyStore((state) => ({
-  //   variables: state.variables,
-  //   addVariable: state.addVariable,
-  //   activeCanvas: state.activeCanvas,
-  // }));
-  const variables: ExpressionItem[] = []; // 임시 static 값
-  const activeCanvas = 'second'; // 임시 static 값
-  // --- ZUSTAND 연동 코드 비활성화 ---
-
+  const variables = useStrategyStore((state) => state.variables);
+  const activeCanvas = useStrategyStore((state) => state.activeCanvas);
+  const addVariable = useStrategyStore((state) => state.addVariable);
 
   const isFirstScan = activeCanvas === 'first';
 
@@ -93,6 +87,10 @@ const Palette: React.FC<PaletteProps> = ({ onItemAdd }) => {
     setNumberInput('');
   };
 
+  const handleSaveVariable = (variable: ExpressionItem) => { // 주석 해제
+    addVariable(variable);
+  };
+
   const renderSection = (title: string, items: React.ReactNode) => (
     <div className="palette-section">
       <h4>{title}</h4>
@@ -102,11 +100,17 @@ const Palette: React.FC<PaletteProps> = ({ onItemAdd }) => {
 
   return (
     <>
+      <IndicatorModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onSave={handleSaveVariable}
+      />
       <div className="palette">
         <h3>팔레트 (도구 모음)</h3>
 
         {renderSection('지표', (
           <button
+            onClick={() => setIsModalOpen(true)} // 주석 해제
             className="palette-item item-type-indicator"
             disabled={isFirstScan}
             title={isFirstScan ? "1차 스캔에서는 지표를 사용할 수 없습니다." : "지표 설정"}
