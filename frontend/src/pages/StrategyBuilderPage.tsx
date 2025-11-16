@@ -184,7 +184,7 @@ const StrategyBuilderPage: React.FC = () => {
           {isScanning ? 'Scanning...' : 'Run Scan'}
         </button>
       </div>
-      <ScanResultsTable results={scanResults} isLoading={isScanning} />
+      {/* <ScanResultsTable results={scanResults} isLoading={isScanning} /> */}
     </div>
   );
 };
