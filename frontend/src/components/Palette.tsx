@@ -1,6 +1,4 @@
 import React from 'react';
-import { ExpressionItem } from '../types';
-import './Palette.css';
 
 interface PaletteProps {
   onItemAdd: (item: ExpressionItem) => void;
