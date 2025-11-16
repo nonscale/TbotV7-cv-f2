@@ -1,3 +1,37 @@
+.strategy-management-controls {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background-color: #2a2a2e;
+  border: 1px solid #3a3a3f;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.strategy-management-controls input,
+.strategy-management-controls select,
+.strategy-management-controls button {
+  padding: 0.5rem 0.8rem;
+  background-color: #3a3a3f;
+  color: #e2e2e2;
+  border: 1px solid #555;
+  border-radius: 4px;
+}
+
+.strategy-management-controls button {
+    cursor: pointer;
+}
+
+.strategy-management-controls button:hover {
+    background-color: #494e80;
+}
+
+.strategy-management-controls button:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
 .strategy-builder-page {
   width: 100%;
   max-width: 1200px; /* Limit max width for better layout on large screens */
