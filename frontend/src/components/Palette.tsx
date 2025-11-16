@@ -1,4 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { ExpressionItem } from '../types';
+import { useStrategyStore } from '../store/strategyStore';
+import IndicatorModal from './IndicatorModal';
+import './Palette.css';
 
 interface PaletteProps {
   onItemAdd: (item: ExpressionItem) => void;
@@ -60,6 +64,32 @@ const BASIC_DATA_ITEMS: ExpressionItem[] = [
   ];
 
 const Palette: React.FC<PaletteProps> = ({ onItemAdd }) => {
+  const [numberInput, setNumberInput] = useState('');
+  const [numbers, setNumbers] = useState<ExpressionItem[]>([
+    { id: '100', type: 'number', label: '100' },
+    { id: '0', type: 'number', label: '0' },
+  ]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const variables = useStrategyStore((state) => state.variables);
+  const activeCanvas = useStrategyStore((state) => state.activeCanvas);
+  const addVariable = useStrategyStore((state) => state.addVariable);
+
+  const isFirstScan = activeCanvas === 'first';
+
+  const handleNumberSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (numberInput && !numbers.some(n => n.label === numberInput)) {
+      const newItem: ExpressionItem = { id: numberInput, type: 'number', label: numberInput };
+      setNumbers([...numbers, newItem]);
+      onItemAdd(newItem);
+    }
+    setNumberInput('');
+  };
+
+  const handleSaveVariable = (variable: ExpressionItem) => {
+    addVariable(variable);
+  };
 
   const renderSection = (title: string, items: React.ReactNode) => (
     <div className="palette-section">
@@ -70,11 +100,21 @@ const Palette: React.FC<PaletteProps> = ({ onItemAdd }) => {
 
   return (
     <>
+      <IndicatorModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onSave={handleSaveVariable}
+      />
       <div className="palette">
         <h3>팔레트 (도구 모음)</h3>
 
         {renderSection('지표', (
-          <button className="palette-item item-type-indicator">
+          <button
+            onClick={() => setIsModalOpen(true)}
+            className="palette-item item-type-indicator"
+            disabled={isFirstScan}
+            title={isFirstScan ? "1차 스캔에서는 지표를 사용할 수 없습니다." : "지표 설정"}
+          >
             지표 설정...
           </button>
         ))}
@@ -95,13 +135,42 @@ const Palette: React.FC<PaletteProps> = ({ onItemAdd }) => {
           </div>
         )))}
 
-        {/* 숫자 및 변수 섹션은 상태에 의존하므로 잠시 비활성화 */}
+        {renderSection('숫자', (
+          <form onSubmit={handleNumberSubmit} className="number-input-form">
+            {numbers.map(item => (
+              <button key={item.id} type="button" onClick={() => onItemAdd(item)} className={`palette-item item-type-${item.type}`}>
+                {item.label}
+              </button>
+            ))}
+            <input
+              type="number"
+              value={numberInput}
+              onChange={(e) => setNumberInput(e.target.value)}
+              placeholder="숫자 입력"
+            />
+          </form>
+        ))}
 
-        {renderSection('함수', FUNCTION_ITEMS.map(item => (
-            <button key={item.id} onClick={() => onItemAdd(item)} className={`palette-item item-type-${item.type}`}>
+        {renderSection('변수', variables.map(item => (
+          <button key={item.id} onClick={() => onItemAdd(item)} className={`palette-item item-type-${item.type}`} title={item.expression}>
+            {item.label}
+          </button>
+        )))}
+
+        {renderSection('함수', FUNCTION_ITEMS.map(item => {
+          const isDisabled = isFirstScan && item.id === 'shift';
+          return (
+            <button
+              key={item.id}
+              onClick={() => onItemAdd(item)}
+              className={`palette-item item-type-${item.type}`}
+              disabled={isDisabled}
+              title={isDisabled ? "1차 스캔에서는 shift 함수를 사용할 수 없습니다." : ""}
+            >
               {item.label}
             </button>
-        )))}
+          );
+        }))}
       </div>
     </>
   );
