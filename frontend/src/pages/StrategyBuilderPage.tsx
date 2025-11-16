@@ -2,6 +2,7 @@ import React, { useCallback, useState } from 'react';
 import axios from 'axios';
 import Palette from '../components/Palette';
 import Canvas from '../components/Canvas';
+import Preview from '../components/Preview'; // Preview 컴포넌트 import
 import ScanResultsTable from '../components/ScanResultsTable';
 import { ExpressionItem, ScanResult } from '../types';
 import { useStrategyStore } from '../store/strategyStore';
@@ -153,6 +154,10 @@ const StrategyBuilderPage: React.FC = () => {
       </div>
 
       <Palette onItemAdd={handleItemAdd} />
+
+      {/* Preview 컴포넌트 추가 */}
+      <Preview firstScanItems={firstScanItems} secondScanItems={secondScanItems} />
+
       <div className="canvas-selector">
         <button onClick={() => setActiveCanvas('first')} className={activeCanvas === 'first' ? 'active' : ''}>
           1차 스캔
@@ -161,7 +166,9 @@ const StrategyBuilderPage: React.FC = () => {
           2차 스캔
         </button>
       </div>
-      {/* <div className="canvases-container">
+
+      {/* Canvas 컨테이너 복원 */}
+      <div className="canvases-container">
         <div className="canvas-wrapper">
           <h3>1차 스캔 캔버스</h3>
           <Canvas items={firstScanItems} setItems={setFirstScanItems} />
@@ -170,7 +177,8 @@ const StrategyBuilderPage: React.FC = () => {
           <h3>2차 스캔 캔버스</h3>
           <Canvas items={secondScanItems} setItems={setSecondScanItems} />
         </div>
-      </div> */}
+      </div>
+
       <div className="scan-controls">
         <button onClick={handleRunScan} disabled={isScanning || (firstScanItems.length === 0 && secondScanItems.length === 0)}>
           {isScanning ? 'Scanning...' : 'Run Scan'}
