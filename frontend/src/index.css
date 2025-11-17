@@ -40,17 +40,25 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  color: rgba(255, 255, 255, 0.87); /* 밝은 글씨색 추가 */
+  background-color: #3b3b3b; /* 배경색 변경 */
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: background-color 0.25s, border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  background-color: #4f4f4f; /* 호버 시 배경색 변경 */
+  border-color: #8c9cff; /* 테두리 색상도 변경 */
 }
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
+button:disabled {
+  background-color: #2a2a2a;
+  color: rgba(255, 255, 255, 0.4);
+  cursor: not-allowed;
+}
+
 
 @media (prefers-color-scheme: light) {
   :root {
@@ -61,6 +69,14 @@ button:focus-visible {
     color: #747bff;
   }
   button {
+    color: #213547; /* 어두운 글씨색 */
+    background-color: #f0f0f0; /* 밝은 배경색 */
+  }
+  button:hover {
+    background-color: #e0e0e0;
+  }
+  button:disabled {
     background-color: #f9f9f9;
+    color: rgba(33, 53, 71, 0.5);
   }
 }

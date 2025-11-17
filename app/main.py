@@ -35,7 +35,7 @@ def read_root():
     return {"message": "Welcome to the Trading Bot API"}
 
 
-@app.get("/health-check")
+@app.get("/api/v1/health")
 def health_check():
     """시스템 상태를 확인하기 위한 Health-check 엔드포인트."""
     return {"status": "ok"}

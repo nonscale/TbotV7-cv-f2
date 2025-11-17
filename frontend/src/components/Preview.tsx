@@ -1,29 +1,36 @@
 import React from 'react';
 import { ExpressionItem } from '../types';
+import { useStrategyStore } from '../store/strategyStore';
 import './Preview.css';
 
-interface PreviewProps {
-  firstScanItems: ExpressionItem[];
-  secondScanItems: ExpressionItem[];
-}
-
-const Preview: React.FC<PreviewProps> = ({ firstScanItems, secondScanItems }) => {
-  const generatePreviewString = (items: ExpressionItem[]) => {
-    if (items.length === 0) {
-      return '표현식이 비어있습니다.';
+const generatePreviewString = (items: ExpressionItem[]) => {
+    if (!items || items.length === 0) {
+        return '...';
     }
     return items.map(item => item.label).join(' ');
-  };
+};
 
-  return (
-    <div className="preview-container">
-      <h4>미리보기</h4>
-      <div className="preview-box">
-        <p><strong>1차 스캔:</strong> {generatePreviewString(firstScanItems)}</p>
-        <p><strong>2차 스캔:</strong> {generatePreviewString(secondScanItems)}</p>
-      </div>
-    </div>
-  );
+const Preview: React.FC = () => {
+    const logicVariables = useStrategyStore(state => state.logicVariables);
+    const finalExpression = useStrategyStore(state => state.finalExpression);
+
+    return (
+        <div className="preview-container">
+            <h4>전략 미리보기</h4>
+            <div className="preview-box">
+                {logicVariables.map(variable => (
+                    <p key={variable.id}>
+                        <strong>{variable.name} ({variable.timeframe}):</strong>{' '}
+                        {generatePreviewString(variable.items)}
+                    </p>
+                ))}
+                <hr />
+                <p>
+                    <strong>최종 조합:</strong> {generatePreviewString(finalExpression)}
+                </p>
+            </div>
+        </div>
+    );
 };
 
 export default Preview;

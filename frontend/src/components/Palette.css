@@ -1,27 +1,121 @@
 .palette {
-  background-color: #333740; padding: 1rem; border-radius: 8px;
-  margin-bottom: 1.5rem; border: 1px solid #4a4e58;
+  background-color: #333740;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  border: 1px solid #4a4e58;
 }
+
 .palette h3 {
-  margin-top: 0; margin-bottom: 1rem; color: #c5c8d2;
-  font-size: 1.2em; text-align: left;
+  margin-top: 0;
+  margin-bottom: 1.5rem; /* 제목 아래 여백 추가 */
+  color: #c5c8d2;
+  font-size: 1.2em;
+  text-align: left;
 }
-.palette-items { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+
+/* 새로운 레이아웃 스타일 */
+.palette-layout {
+  display: flex;
+  gap: 1.5rem; /* 그룹 간 여백 */
+}
+
+.palette-main-group {
+  flex: 1;
+  background-color: #2c2f36; /* 그룹 배경색 */
+  padding: 1rem;
+  border-radius: 6px;
+  border: 1px solid #444;
+}
+
+.palette-main-group > h4 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: #e0e2e8;
+  font-size: 1.1em;
+  border-bottom: 1px solid #4a4e58;
+  padding-bottom: 0.5rem;
+}
+
+.palette-section {
+  margin-bottom: 1rem;
+}
+
+.palette-section:last-child {
+  margin-bottom: 0;
+}
+
+.palette-section h5, .operator-group h6 {
+  font-size: 0.9em;
+  color: #a0a4b1;
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.palette-section hr {
+  border: none;
+  border-top: 1px solid #4a4e58;
+  margin: 1rem 0;
+}
+
+.palette-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.operator-groups {
+    flex-direction: column;
+    align-items: flex-start;
+}
+.operator-group {
+    margin-bottom: 0.5rem;
+}
+
+
+/* 아이템 버튼 스타일 */
 .palette-item {
-  padding: 0.5em 1em; font-size: 0.9em; border-radius: 20px;
-  border: 1px solid transparent; cursor: pointer; transition: all 0.2s ease-in-out;
-  font-weight: 500;
+  /* index.css의 기본 버튼 스타일을 상속받으므로 색상 관련 부분만 재정의 */
+  padding: 0.5em 1em;
+  font-size: 0.9em;
+  border-radius: 20px;
+  border-width: 1px;
+  border-style: solid;
+  transition: all 0.2s ease-in-out;
 }
-.palette-item:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); }
+.palette-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
 .item-type-data { background-color: #2e7d32; color: white; border-color: #388e3c; }
 .item-type-data:hover { background-color: #388e3c; }
+
 .item-type-operator { background-color: #d32f2f; color: white; border-color: #e53935; }
 .item-type-operator:hover { background-color: #e53935; }
+
 .item-type-number { background-color: #1976d2; color: white; border-color: #1e88e5; }
 .item-type-number:hover { background-color: #1e88e5; }
+
 .item-type-indicator { background-color: #f57f17; color: white; border-color: #fbc02d; }
 .item-type-indicator:hover { background-color: #fbc02d; }
+
 .item-type-variable { background-color: #7b1fa2; color: white; border-color: #8e24aa; }
 .item-type-variable:hover { background-color: #8e24aa; }
+
 .item-type-function { background-color: #00796b; color: white; border-color: #00897b; }
 .item-type-function:hover { background-color: #00897b; }
+
+.palette-section.disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+.number-input-form input {
+  background: #333;
+  border: 1px solid #555;
+  color: white;
+  border-radius: 4px;
+  padding: 0.5em;
+  width: 100px;
+}

@@ -2,8 +2,8 @@
     display: flex;
     padding: 10px;
     min-height: 100px;
-    background-color: #ffffff;
-    border: 1px solid #cccccc;
+    background-color: #2a2a2e;
+    border: 1px solid #3a3a3f;
     border-radius: 4px;
     overflow-x: auto;
   }

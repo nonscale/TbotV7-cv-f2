@@ -146,3 +146,10 @@ yarn-error.log*
 *.db
 *.sqlite3
 test.db
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/
