@@ -7,6 +7,28 @@
     <title>Trading Bot</title>
   </head>
   <body>
+    <pre id="error-container" style="color: red; white-space: pre-wrap;"></pre>
+    <script>
+      window.onerror = function (message, source, lineno, colno, error) {
+        const errorContainer = document.getElementById('error-container');
+        if (errorContainer) {
+          errorContainer.textContent += `Caught an error:\nMessage: ${message}\nSource: ${source}\nLine: ${lineno}, Col: ${colno}\n`;
+          if (error && error.stack) {
+            errorContainer.textContent += `Stack:\n${error.stack}\n\n`;
+          }
+        }
+        return false; // Prevent default browser error handling
+      };
+      window.addEventListener('unhandledrejection', function (event) {
+        const errorContainer = document.getElementById('error-container');
+        if (errorContainer) {
+            errorContainer.textContent += `Caught an unhandled promise rejection:\nReason: ${event.reason}\n\n`;
+            if (event.reason && event.reason.stack) {
+              errorContainer.textContent += `Stack:\n${event.reason.stack}\n\n`;
+            }
+        }
+      });
+    </script>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
