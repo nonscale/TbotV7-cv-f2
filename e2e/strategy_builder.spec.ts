@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Strategy Builder E2E Test', () => {
-  const BASE_URL = 'http://localhost:5173';
+  const BASE_URL = 'http://localhost:5173/strategy-builder';
 
   test.beforeEach(async ({ page }) => {
     // 개발 서버 URL로 이동
