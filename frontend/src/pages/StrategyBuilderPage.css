@@ -9,22 +9,16 @@
   gap: 0.8rem;
 }
 
-.strategy-management-controls input,
-.strategy-management-controls select,
-.strategy-management-controls button {
-  padding: 0.5rem 0.8rem;
-  background-color: #3a3a3f;
-  color: #e2e2e2;
-  border: 1px solid #555;
-  border-radius: 4px;
-}
-
-.strategy-management-controls button {
-    cursor: pointer;
-}
-
-.strategy-management-controls button:hover {
-    background-color: #494e80;
+/* The base button style from index.css will apply. We only add specific overrides here. */
+.strategy-management-controls {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background-color: #2a2a2e;
+  border: 1px solid #3a3a3f;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
 }
 
 .strategy-management-controls button:disabled {
@@ -69,19 +63,17 @@ h2, h3 {
   text-align: center;
 }
 
+/* Make the main scan button slightly more prominent without breaking the theme. */
 .scan-controls button {
   padding: 0.8em 2em;
   font-size: 1.1em;
   font-weight: bold;
-  background-color: #646cff;
-  color: white;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s, opacity 0.3s;
+  border-color: #8c9cff; /* A subtle highlight for the primary action */
 }
 
 .scan-controls button:hover {
-  background-color: #535bf2;
+  border-color: #aab4ff;
+  background-color: #5a5a5a; /* Use the standard hover from index.css */
 }
 
 .scan-controls button:disabled {

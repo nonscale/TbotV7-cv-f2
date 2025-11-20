@@ -52,12 +52,12 @@ export default defineConfig({
     {
       command: 'bash -c "source venv/bin/activate && uvicorn app.main:app --host 0.0.0.0 --port 8000"',
       url: 'http://localhost:8000/api/v1/health', // 백엔드 health check 엔드포인트
-      reuseExistingServer: !process.env.CI,
+      reuseExistingServer: false,
     },
     {
       command: 'cd frontend && npm run dev',
       url: 'http://localhost:5173',
-      reuseExistingServer: !process.env.CI,
+      reuseExistingServer: false,
     },
   ],
 });
