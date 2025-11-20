@@ -5,7 +5,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #2D2D34; /* 배경색 통일 */
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -35,19 +35,19 @@ h1 {
 
 button {
   border-radius: 8px;
-  border: 1px solid transparent;
+  border: 1px solid #6c717e; /* 테두리 색상 통일 */
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  color: rgba(255, 255, 255, 0.87); /* 밝은 글씨색 추가 */
-  background-color: #3b3b3b; /* 배경색 변경 */
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #555B69; /* 팔레트 버튼과 유사한 색상으로 변경 */
   cursor: pointer;
   transition: background-color 0.25s, border-color 0.25s;
 }
 button:hover {
-  background-color: #4f4f4f; /* 호버 시 배경색 변경 */
-  border-color: #8c9cff; /* 테두리 색상도 변경 */
+  background-color: #646a79; /* 호버 시 배경색 변경 */
+  border-color: #8c93a2; /* 테두리 색상도 변경 */
 }
 button:focus,
 button:focus-visible {
