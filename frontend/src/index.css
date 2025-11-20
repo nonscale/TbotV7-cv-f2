@@ -35,19 +35,21 @@ h1 {
 
 button {
   border-radius: 8px;
-  border: 1px solid transparent;
+  border: 1px solid #555;
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  color: rgba(255, 255, 255, 0.87); /* 밝은 글씨색 추가 */
-  background-color: #3b3b3b; /* 배경색 변경 */
+  color: #f0f0f0;
+  background-color: #4a4a4a;
   cursor: pointer;
-  transition: background-color 0.25s, border-color 0.25s;
+  transition: background-color 0.25s, box-shadow 0.25s, border-color 0.25s;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 button:hover {
-  background-color: #4f4f4f; /* 호버 시 배경색 변경 */
-  border-color: #8c9cff; /* 테두리 색상도 변경 */
+  background-color: #5a5a5a;
+  border-color: #777;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 button:focus,
 button:focus-visible {
